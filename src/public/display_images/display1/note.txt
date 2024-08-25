@@ -1,0 +1,1 @@
+add images to this folder.  any images here will be auto added to the imagge rotation shown.
