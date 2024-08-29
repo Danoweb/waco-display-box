@@ -20,3 +20,7 @@ A display system for the notification TVs at WACO Air Museum
 # Maintenance
 * The System will automatically pull new images and restart the display server every 4 hours.
 * see `cron/reload.sh`
+
+# Additional Tips and Tricks
+* On the display Raspberry pi, you may need to run this command to allow git to update:
+  * `git config --global --add safe.directory /opt/waco-display-box`
