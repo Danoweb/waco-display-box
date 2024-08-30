@@ -18,6 +18,12 @@ const ImageGallery = ({ interval = 5000 }) => {
         // }, interval);
     
         // return () => clearInterval(timer); // Cleanup the interval on component unmount
+        const intervalId = setInterval(() => {
+          window.location.reload();
+        }, 60000); // 60000 milliseconds = 60 seconds
+    
+        // Cleanup on component unmount
+        return () => clearInterval(intervalId);
     }, [images.length, interval]);
 
     return (
