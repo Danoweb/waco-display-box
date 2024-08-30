@@ -4,7 +4,7 @@ import 'react-slideshow-image/dist/styles.css';
 
 const ImageGallery = ({ interval = 5000 }) => {
     const [images, setImages] = useState([]);
-    const [currentIndex, setCurrentIndex] = useState(0);
+    //const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         // Assuming images are stored in the public/images folder
@@ -20,7 +20,7 @@ const ImageGallery = ({ interval = 5000 }) => {
         // return () => clearInterval(timer); // Cleanup the interval on component unmount
         const intervalId = setInterval(() => {
           window.location.reload();
-        }, 60000); // 60000 milliseconds = 60 seconds
+        }, 600000); // 60000 milliseconds = 60 seconds
     
         // Cleanup on component unmount
         return () => clearInterval(intervalId);
@@ -31,7 +31,7 @@ const ImageGallery = ({ interval = 5000 }) => {
           <Fade 
             duration={interval}
             transitionDuration={1000}
-            infinite={true}
+            //infinite={true}
             arrows={false}
             pauseOnHover={false}
             indicators={false}
