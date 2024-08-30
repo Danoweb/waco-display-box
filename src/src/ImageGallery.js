@@ -27,8 +27,8 @@ const ImageGallery = ({ interval = 5000 }) => {
             transitionDuration={500}
             infinite={true}
             arrows={false}
-            pauseOnHover={true}
-            indicators={true}
+            pauseOnHover={false}
+            indicators={false}
             defaultIndex={currentIndex}
           >
             {images.map((image, index) => (
@@ -37,7 +37,8 @@ const ImageGallery = ({ interval = 5000 }) => {
                     key={index}
                     src={process.env.PUBLIC_URL + image}
                     alt={`Gallery ${index}`}
-                    style={{ width: process.env.REACT_APP_IMAGE_WIDTH, maxWidth: '100%', height: 'auto' }}
+                    //style={{ width: process.env.REACT_APP_IMAGE_WIDTH, maxWidth: '100%', height: 'auto' }}
+                    className="full-screen-image"
                 />
               </div>
             ))}
