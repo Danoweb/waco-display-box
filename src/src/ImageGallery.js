@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
-const ImageGallery = () => {
+const ImageGallery = ({ interval = 5000 }) => {
     const [images, setImages] = useState([]);
+    const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
         // Assuming images are stored in the public/images folder
@@ -11,11 +12,25 @@ const ImageGallery = () => {
         const images = importAll(require.context("../" + process.env.REACT_APP_IMAGE_FOLDER, false, /\.(png|jpe?g|svg)$/));
 
         setImages(images);
-    }, []);
+
+        const timer = setInterval(() => {
+          setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, interval);
+    
+        return () => clearInterval(timer); // Cleanup the interval on component unmount
+    }, [images.length, interval]);
 
     return (
         <div className="slide-container">
-          <Slide easing="ease" autoplay={true} duration={5000}>
+          <Slide 
+            duration={interval}
+            transitionDuration={500}
+            infinite={true}
+            arrows={false}
+            pauseOnHover={true}
+            indicators={true}
+            defaultIndex={currentIndex}
+          >
             {images.map((image, index) => (
               <div className="each-slide" key={index}>
                 <img

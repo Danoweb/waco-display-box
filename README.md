@@ -17,6 +17,11 @@ And add this:
 @xset s noblank
 @chromium-browser --kiosk http://localhost:3201/  # load chromium after boot and open the website in full screen mode
 ```
+* Remove the Cursor:
+  * `sudo apt-get install unclutter`
+  * Add this to `/etc/xdg/lxsession/LXDE-pi/autostart`
+  * `unclutter -display :0 -noevents -grab`
+```
 
 # Slideshow
 * The images set in the folder named in the `.env` file are loaded and added to the slideshow.
