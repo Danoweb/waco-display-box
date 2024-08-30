@@ -13,11 +13,11 @@ const ImageGallery = ({ interval = 5000 }) => {
 
         setImages(images);
 
-        const timer = setInterval(() => {
-          setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, interval);
+        // const timer = setInterval(() => {
+        //   setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        // }, interval);
     
-        return () => clearInterval(timer); // Cleanup the interval on component unmount
+        // return () => clearInterval(timer); // Cleanup the interval on component unmount
     }, [images.length, interval]);
 
     return (
@@ -29,7 +29,8 @@ const ImageGallery = ({ interval = 5000 }) => {
             arrows={false}
             pauseOnHover={false}
             indicators={false}
-            defaultIndex={currentIndex}
+            //defaultIndex={currentIndex}
+            autoplay={true}
           >
             {images.map((image, index) => (
               <div className="each-slide" key={index}>
@@ -37,8 +38,8 @@ const ImageGallery = ({ interval = 5000 }) => {
                     key={index}
                     src={process.env.PUBLIC_URL + image}
                     alt={`Gallery ${index}`}
-                    //style={{ width: process.env.REACT_APP_IMAGE_WIDTH, maxWidth: '100%', height: 'auto' }}
-                    className="full-screen-image"
+                    style={{ width: process.env.REACT_APP_IMAGE_WIDTH, maxWidth: '100%', height: 'auto' }}
+                    //className="full-screen-image"
                 />
               </div>
             ))}
