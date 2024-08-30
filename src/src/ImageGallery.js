@@ -8,7 +8,7 @@ const ImageGallery = () => {
     useEffect(() => {
         // Assuming images are stored in the public/images folder
         const importAll = (r) => r.keys().map(r);
-        const images = importAll(require.context(process.env.REACT_APP_IMAGE_FOLDER, false, /\.(png|jpe?g|svg)$/));
+        const images = importAll(require.context("../" + process.env.REACT_APP_IMAGE_FOLDER, false, /\.(png|jpe?g|svg)$/));
 
         setImages(images);
     }, []);
