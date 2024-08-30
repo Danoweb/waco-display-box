@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Slide } from 'react-slideshow-image';
+import { Fade, Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
 const ImageGallery = ({ interval = 5000 }) => {
@@ -22,9 +22,9 @@ const ImageGallery = ({ interval = 5000 }) => {
 
     return (
         <div className="slide-container">
-          <Slide 
+          <Fade 
             duration={interval}
-            transitionDuration={500}
+            transitionDuration={1000}
             infinite={true}
             arrows={false}
             pauseOnHover={false}
@@ -43,7 +43,7 @@ const ImageGallery = ({ interval = 5000 }) => {
                 />
               </div>
             ))}
-          </Slide>
+          </Fade>
         </div>
     );
 };
