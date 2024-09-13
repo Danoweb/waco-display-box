@@ -117,7 +117,7 @@ button.slick-next {
 
             // Fetch the list of images from the API
             $.getJSON(`${envData.api_url}/images?img_folder=${envData.img_folder}`, function(data) {
-                const slider = $("#image-slider");
+                var slider = $("#image-slider");
 
                 // Loop through the list of image filenames
                 data.images.forEach(function(imageName) {
@@ -135,7 +135,8 @@ button.slick-next {
 
                 // Initialize Slick Slider after images have been added
 				console.log("Starting Slick:" + Object.keys(slider).length)
-                slider.slick({
+                console.log(slider)
+                $("#image-slider").slick({
                     infinite: true,
                     autoplay: true,
                     autoplaySpeed: 5000,  // 3 seconds per slide
@@ -150,12 +151,12 @@ button.slick-next {
                 });
 				
 				  
-				slider.on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+				$("#image-slider").on('beforeChange', function(event, slick, currentSlide, nextSlide) {
 					console.log("animating");
 					$(slick.$slides).removeClass('is-animating');
 				});
 
-				slider.on('afterChange', function(event, slick, currentSlide, nextSlide) {
+				$("#image-slider").on('afterChange', function(event, slick, currentSlide, nextSlide) {
 					console.log("done animating");
 					$(slick.$slides.get(currentSlide)).addClass('is-animating');
 				});
