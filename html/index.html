@@ -147,7 +147,7 @@ button.slick-next {
                             .attr("alt", imageData.filename);
 
                         // Append the image to the slider
-                        slider.slick('slickAdd', imgElement);
+                        slider.append(imgElement);
                         slideIndex++;
                     });
                 });
