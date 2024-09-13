@@ -41,7 +41,7 @@
 <script>
     $(document).ready(function() {
         // Fetch environment variables from the backend
-        $.getJSON("http://wacodisplay01:8000/env", function(envData) {
+        $.getJSON("http://localhost:8000/env", function(envData) {
             // Use the app name from the environment variables
             $("#app-name").text(envData.app_name);
 
