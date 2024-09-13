@@ -119,7 +119,7 @@ button.slick-next {
 
             // Fetch the list of images from the API
             $.getJSON(`${envData.api_url}/images?img_folder=${envData.img_folder}`, function(data) {
-                var slider = $("#image-slider");
+                var slider = $(".slider");
                 var slideIndex = 0
 
                 // Initialize Slick Slider after images have been added
