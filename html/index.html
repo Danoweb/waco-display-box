@@ -14,21 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
 
-    <style>
-        * {
-		  padding: 0;
-		  margin: 0;
-		  outline: 0;
-		}
-		body {
-		  display: flex;
-		  align-items: center;
-		  justify-content: center;
-		  height: 100vh;
-		  overflow: hidden;
-		  background-color: #000;
-		}
-    </style>
+    
 </head>
 <body>
 
@@ -71,10 +57,13 @@
                 });
             });
 
-            setTimeout(function() {
-                location.reload();
-            }, 300000); // 5 minutes in milliseconds
+            
         });
+
+        setTimeout(function() {
+            console.log("Reloading")
+            location.reload();
+        }, 600000); // 10 minutes in milliseconds
     });
 </script>
 
