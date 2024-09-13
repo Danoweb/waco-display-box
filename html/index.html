@@ -136,7 +136,7 @@ button.slick-next {
                     slidesToShow: 1,
                     cssEase: 'linear'
                 });
-                
+
                 // Loop through the list of image filenames
                 data.images.forEach(function(imageName) {
                     // Fetch each image's base64 data
@@ -147,7 +147,7 @@ button.slick-next {
                             .attr("alt", imageData.filename);
 
                         // Append the image to the slider
-                        slider.slick('slickAdd','<div>' + imgElement + '</div>');
+                        slider.slick('slickAdd', imgElement);
                         slideIndex++;
                     });
                 });
