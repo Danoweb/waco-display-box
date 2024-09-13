@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Image Slider</title>
+
+    <!-- Slick Slider CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <style>
+        /* Fullscreen container for the image slider */
+        .slider-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+        }
+
+        /* Slick Slider image styling */
+        .slider img {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+    </style>
+
+    <!-- jQuery and Slick Slider JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</head>
+<body>
+
+<h1 id="app-name" style="display:none;">Image Gallery</h1>
+<div class="slider-container">
+    <div class="slider" id="image-slider"></div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Fetch environment variables from the backend
+        $.getJSON("http://localhost:8000/env", function(envData) {
+            // Use the app name from the environment variables
+            $("#app-name").text(envData.app_name);
+
+            // Fetch the list of images from the API
+            $.getJSON(`${envData.api_url}/images?img_folder=${envData.img_folder}`, function(data) {
+                const slider = $("#image-slider");
+
+                // Loop through the list of image filenames
+                data.images.forEach(function(imageName) {
+                    // Fetch each image's base64 data
+                    $.getJSON(`${envData.api_url}/images/${imageName}?img_folder=${envData.img_folder}`, function(imageData) {
+                        // Create an image element with the base64 data
+                        const imgElement = $("<img>")
+                            .attr("src", `data:image/jpeg;base64,${imageData.data}`)
+                            .attr("alt", imageData.filename);
+
+                        // Append the image to the slider
+                        slider.append(imgElement);
+                    });
+                });
+
+                // Initialize Slick Slider after images have been added
+                slider.slick({
+                    infinite: true,
+                    autoplay: true,
+                    autoplaySpeed: 3000,  // 3 seconds per slide
+                    arrows: false,        // Disable navigation arrows
+                    dots: false,          // Disable navigation dots
+                    fade: true,           // Fade transition between slides
+                    cssEase: 'linear'
+                });
+            });
+        });
+
+        // Reload the page every 5 minutes (500000 milliseconds)
+        setTimeout(function() {
+            location.reload();
+        }, 300000); // 5 minutes in milliseconds
+    });
+</script>
+
+</body>
+</html>

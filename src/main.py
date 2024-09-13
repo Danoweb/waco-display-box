@@ -49,3 +49,14 @@ def serve_image(image_name: str, img_folder: str):
     else:
         raise HTTPException(status_code=404, detail="Image not found")
     
+@app.get("/env")
+def get_env():
+    """
+    Returns environment variables relevant to the frontend.
+    """
+    return {
+        "api_url": os.getenv("API_URL", "http://localhost:8000"),
+        "app_name": os.getenv("APP_NAME", "Waco Image display"),
+        "img_folder": os.getenv("IMG_FOLDER", "display_front"),
+        # Add more environment variables here as needed
+    }
