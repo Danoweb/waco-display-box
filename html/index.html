@@ -119,6 +119,24 @@ button.slick-next {
             $.getJSON(`${envData.api_url}/images?img_folder=${envData.img_folder}`, function(data) {
                 var slider = $("#image-slider");
                 var slideIndex = 0
+
+                // Initialize Slick Slider after images have been added
+				console.log("Starting Slick:" + Object.keys(slider).length)
+                console.log(slider)
+                $("#image-slider").slick({
+                    infinite: true,
+                    autoplay: true,
+                    autoplaySpeed: 5000,  // 3 seconds per slide
+                    arrows: false,        // Disable navigation arrows
+                    dots: false,          // Disable navigation dots
+                    draggable: false,
+					fade: true,
+					speed: 1000,          // Fade transition between slides
+                    slidesToScroll: 1,
+                    slidesToShow: 1,
+                    cssEase: 'linear'
+                });
+                
                 // Loop through the list of image filenames
                 data.images.forEach(function(imageName) {
                     // Fetch each image's base64 data
@@ -134,22 +152,7 @@ button.slick-next {
                     });
                 });
 
-                // Initialize Slick Slider after images have been added
-				console.log("Starting Slick:" + Object.keys(slider).length)
-                console.log(slider)
-                $("#image-slider").slick({
-                    infinite: true,
-                    autoplay: true,
-                    autoplaySpeed: 5000,  // 3 seconds per slide
-                    arrows: true,        // Disable navigation arrows
-                    dots: true,          // Disable navigation dots
-                    draggable: true,
-					fade: true,
-					speed: 1000,          // Fade transition between slides
-                    slidesToScroll: 1,
-                    slidesToShow: 1,
-                    cssEase: 'linear'
-                });
+                
 				
 				  
 				$("#image-slider").on('beforeChange', function(event, slick, currentSlide, nextSlide) {
