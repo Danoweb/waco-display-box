@@ -104,8 +104,10 @@ button.slick-next {
 <body>
 
 <h1 id="app-name" style="display:none;">Image Gallery</h1>
-<div class="slider-container">
-    <div class="slider" id="image-slider"></div>
+<div class="row">
+    <div class="slider">
+
+    </div>
 </div>
 
 <script>
@@ -123,7 +125,7 @@ button.slick-next {
                 // Initialize Slick Slider after images have been added
 				console.log("Starting Slick:" + Object.keys(slider).length)
                 console.log(slider)
-                $("#slider-container").slick({
+                $(".slider").slick({
                     infinite: true,
                     autoplay: true,
                     autoplaySpeed: 5000,  // 3 seconds per slide
@@ -148,7 +150,7 @@ button.slick-next {
                             .attr("alt", imageData.filename);
 
                         // Append the image to the slider
-                        slider.append(`<div><img src=data:image/jpeg;base64,${imageData.data} alt=${imageData.filename} /></div>`);
+                        $(".slider").append(`<div><img src=data:image/jpeg;base64,${imageData.data} alt=${imageData.filename} /></div>`);
                         slideIndex++;
                     });
                 });
