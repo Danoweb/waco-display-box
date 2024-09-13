@@ -136,7 +136,7 @@ button.slick-next {
                 // Initialize Slick Slider after images have been added
 				console.log("Starting Slick:" + Object.keys(slider).length)
                 slider.slick({
-					slidesToShow: Object.keys(slider).length, 
+					 
                     infinite: true,
                     autoplay: true,
                     autoplaySpeed: 5000,  // 3 seconds per slide
@@ -145,6 +145,8 @@ button.slick-next {
                     draggable: false,
 					fade: true,
 					speed: 1000,          // Fade transition between slides
+                    slidesToScroll: Object.keys(slider).length,
+                    slidesToShow: Object.keys(slider).length,
                     cssEase: 'linear'
                 });
 				
