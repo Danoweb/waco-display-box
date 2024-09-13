@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .image-container img {
+            max-width: 200px;
+            height: auto;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h1>Dynamic Image Gallery</h1>
+<div class="image-container" id="image-container"></div>
+
+<script>
+    $(document).ready(function() {
+        // Fetch the list of images
+        $.getJSON("http://localhost:8000/images?img_folder=", function(data) {
+            const imageContainer = $("#image-container");
+
+            // Loop through the list of image filenames
+            data.images.forEach(function(imageName) {
+                // Fetch each image's base64 data
+                $.getJSON(`http://localhost:8000/images/${imageName}`, function(imageData) {
+                    // Create an image element with the base64 data
+                    const imgElement = $("<img>")
+                        .attr("src", `data:image/jpeg;base64,${imageData.data}`)
+                        .attr("alt", imageData.filename);
+
+                    // Append the image to the container
+                    imageContainer.append(imgElement);
+                });
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

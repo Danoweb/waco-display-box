@@ -1,15 +1,10 @@
 version: '3.8'
 services:
   waco-display-box:
-    image: node:latest
-    working_dir: /app
+    build: .
+    container_name: fastapi-app
     ports:
-      # Make sure to also update the CLI ENV VAR in package.json
-      - "3201:3201"
+      - "8000:8000"
     volumes:
-      - ./src/:/app
-      #- /app/node_modules
-    env_file:
-      - .env
-    restart: "unless-stopped"
-    command: sh -c "npm install && npm start -- -H 0.0.0.0"
+      - ./src:/app
+    restart: unless-stopped
