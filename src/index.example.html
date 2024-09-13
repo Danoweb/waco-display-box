@@ -19,7 +19,6 @@
 </head>
 <body>
 
-<h1>Dynamic Image Gallery</h1>
 <div class="image-container" id="image-container"></div>
 
 <script>
@@ -42,6 +41,11 @@
                 });
             });
         });
+
+        // Reload the page every 20 minutes (1200000 milliseconds)
+        setTimeout(function() {
+            location.reload();
+        }, 1200000); // 20 minutes in milliseconds
     });
 </script>
 
