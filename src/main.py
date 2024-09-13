@@ -36,11 +36,11 @@ def list_images(img_folder: str):
         raise HTTPException(status_code=404, detail="Image folder not found")
 
 @app.get("/images/{image_name}", response_model=ImageData)
-def serve_image(image_name: str):
+def serve_image(image_name: str, img_folder: str):
     """
     Serve the requested image as base64 data.
     """
-    image_path = os.path.join(IMAGES_FOLDER, image_name)
+    image_path = os.path.join(IMAGES_FOLDER+f"/{img_folder}/", image_name)
     
     if os.path.exists(image_path) and image_name.lower().endswith(('jpg', 'jpeg', 'png', 'gif')):
         with open(image_path, "rb") as img_file:

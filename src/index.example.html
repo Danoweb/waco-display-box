@@ -30,7 +30,7 @@
             // Loop through the list of image filenames
             data.images.forEach(function(imageName) {
                 // Fetch each image's base64 data
-                $.getJSON(`http://localhost:8000/images/${imageName}`, function(imageData) {
+                $.getJSON(`http://localhost:8000/images/${imageName}?img_folder=`, function(imageData) {
                     // Create an image element with the base64 data
                     const imgElement = $("<img>")
                         .attr("src", `data:image/jpeg;base64,${imageData.data}`)
@@ -45,7 +45,7 @@
         // Reload the page every 20 minutes (1200000 milliseconds)
         setTimeout(function() {
             location.reload();
-        }, 1200000); // 20 minutes in milliseconds
+        }, 300000); // 20 minutes in milliseconds
     });
 </script>
 
